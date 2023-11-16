@@ -1,0 +1,5 @@
+<input type="text" placeholder="type task name" [(ngModel)]="taskName" />
+<input type="checkbox" name="" id="isDone" [(ngModel)]="taskIsDone" />
+<label for="isDone">is done ?</label>
+<button (click)="addTask()">add</button>
+<button (click)="resetTask()">reset</button>
