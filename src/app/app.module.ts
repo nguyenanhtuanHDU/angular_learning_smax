@@ -6,7 +6,7 @@ import { StoreModule } from '@ngrx/store';
 import { mainReducer } from './store/reducer';
 import { TaskListComponent } from './components/task-list/task-list.component';
 import { TaskAddComponent } from './components/task-add/task-add.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './components/home/home.component';
 import { ChildOneComponent } from './components/child-one/child-one.component';
@@ -25,6 +25,7 @@ import { ChildOneComponent } from './components/child-one/child-one.component';
     StoreModule.forRoot({ tasks: mainReducer }),
     FormsModule,
     HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent],
