@@ -9,9 +9,16 @@ import { TaskAddComponent } from './components/task-add/task-add.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './components/home/home.component';
+import { ChildOneComponent } from './components/child-one/child-one.component';
 
 @NgModule({
-  declarations: [AppComponent, TaskListComponent, TaskAddComponent, HomeComponent],
+  declarations: [
+    AppComponent,
+    TaskListComponent,
+    TaskAddComponent,
+    HomeComponent,
+    ChildOneComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,

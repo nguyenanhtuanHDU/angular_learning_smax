@@ -4,6 +4,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { IUser } from '../models/user';
 import { GetResponse } from '../models/response';
 import { IStudent } from '../models/student';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -12,6 +13,8 @@ export class MainService extends BaseService {
   constructor(private httpClient: HttpClient) {
     super();
   }
+
+  subject = new Subject<string>();
 
   handleError(err: HttpErrorResponse) {
     console.log('🚀 ~ log error by mainService:', err);
@@ -29,4 +32,8 @@ export class MainService extends BaseService {
         this.createUrl(['students', 'teacherID', teacherID])
       ),
   };
+
+  senMessage(message: string) {
+    this.subject.next(message);
+  }
 }
