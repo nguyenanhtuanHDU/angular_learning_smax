@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  // api: 'https://6400c7f83779a862624cdca2.mockapi.io/v1/api',
-  api: 'http://localhost:8000/v1/api',
+  api: 'https://6400c7f83779a862624cdca2.mockapi.io/v1/api',
+  // api: 'http://localhost:8000/v1/api',
 };
 
 /*

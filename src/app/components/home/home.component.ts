@@ -12,27 +12,24 @@ import { MainService } from 'src/app/services/main.service';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  constructor(private formBuilder: FormBuilder) {}
-
-  form = this.formBuilder.group({
-    username: '1',
-    password: '1',
-    age: 1,
-  });
+  constructor(private mainService: MainService) {}
+  users: IUser[] = [];
   ngOnInit(): void {
-    // this.form.setValue({
-    //   password: '1',
-    //   age: 1,
-    // }) // lỗi vì dùng setValue phải cập nhật tất cả các field
-    this.form.patchValue({
-      password: '2',
-      age: 2,
+    this.getAllUser();
+  }
+
+  getAllUser(index: number = 0) {
+    console.log('🚀 ~ index:', index);
+    this.mainService.users.getAll().subscribe((data) => {
+      console.log('🚀 ~ data:', data);
+      if (data[index]) {
+        for (const user of data) {
+          if (user.username === 'c') {
+            this.users.push(user);
+          }
+        }
+        this.getAllUser(index + 1); // gọi lại chính nó(đệ quy) thay thế cho loop
+      }
     });
-    // patchValue không cần cập nhật tất cả các field
-
-    this.form.reset(); // đặt các field về null
-
-    console.log(this.form.contains('username')); // kiểm tra xem có chứa field username ko 
-    
   }
 }
