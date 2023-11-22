@@ -5,9 +5,9 @@
 export const environment = {
   production: false,
   api: 'https://6400c7f83779a862624cdca2.mockapi.io/v1/api',
-  // api: 'http://localhost:8000/v1/api',
 };
 
+environment.api = 'http://localhost:8000/v1/api';
 /*
  * For easier debugging in development mode, you can import the following file
  * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.

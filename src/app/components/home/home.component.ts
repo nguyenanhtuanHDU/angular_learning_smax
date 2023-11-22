@@ -15,12 +15,17 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 })
 export class HomeComponent implements OnInit {
   modalRef?: BsModalRef;
-  constructor(private modalService: BsModalService) {}
- 
-  openModal(template: TemplateRef<any>) {
-    this.modalRef = this.modalService.show(ChildOneComponent);
-    // nhét component vào modal
-    // this.modalRef = this.modalService.show(template);
+  constructor(private mainService: MainService) {}
+
+  ngOnInit(): void {
+    this.getAllStudent()
   }
-  ngOnInit(): void {}
+
+  getAllStudent() {
+    this.mainService.students
+      .getAll('65295ec5119f52715f0b179b')
+      .subscribe((data) => {
+        console.log('🚀 ~ data:', data);
+      });
+  }
 }
