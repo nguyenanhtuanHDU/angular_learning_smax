@@ -28,16 +28,7 @@ export class MainService extends BaseService {
 
   students = {
     getAll: (teacherID: string) =>
-      this.httpClient.get(
-      // this.httpClient.get<GetResponse<IStudent[]>>(
-        this.createUrl(['students', 'teacherID', teacherID]),
-        {
-          // params: { demo: 'abc' },
-          // bên phía nodejs sẽ nhận thông qua req.query
-          // responseType: 'text',
-          // định nghĩa type response trả về : json(default, text, ...)
-        }
-      ),
+      this.httpClient.get(this.createUrl(['students', 'teacherID', teacherID])),
   };
 
   senMessage(message: string) {

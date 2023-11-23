@@ -18,14 +18,20 @@ export class HomeComponent implements OnInit {
   constructor(private mainService: MainService) {}
 
   ngOnInit(): void {
-    this.getAllStudent()
+    Promise.resolve().then(async () => {
+      console.log('start');
+      await new Promise((resolve) => {
+        setTimeout(resolve, 1000);
+        console.log('run');
+      });
+      console.log('end');
+    });
+    // start -> run -> end
   }
 
-  getAllStudent() {
-    this.mainService.students
-      .getAll('65295ec5119f52715f0b179b')
-      .subscribe((data) => {
-        console.log('🚀 ~ data:', data);
-      });
+  getAllUsers() {
+    this.mainService.users.getAll().subscribe((data) => {
+      console.log('🚀 ~ data:', data);
+    });
   }
 }
