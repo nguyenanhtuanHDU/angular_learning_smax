@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { IUser } from 'src/app/models/user';
 import { MainService } from 'src/app/services/main.service';
 
 @Component({
@@ -7,18 +8,11 @@ import { MainService } from 'src/app/services/main.service';
   styleUrls: ['./child-one.component.scss'],
 })
 export class ChildOneComponent implements OnInit {
-  message: string = '';
+  users: IUser[] = []
   constructor(private mainService: MainService) {
-    // this.mainService.subject.subscribe((data) => {
-    //   console.log('🚀 ~ data:', data);
-    //   this.message = data;
-    // });
   }
 
   ngOnInit(): void {
-    this.mainService.subject.subscribe((data) => {
-      console.log('🚀 ~ data:', data);
-      this.message = data;
-    });
+    this.mainService.listUser.subscribe(data => this.users = data)
   }
 }

@@ -15,23 +15,41 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 })
 export class HomeComponent implements OnInit {
   modalRef?: BsModalRef;
-  constructor(private mainService: MainService) {}
+  users: IUser[] = []
+  constructor(private mainService: MainService) {
+    console.log(this.mainService.users.getById(1))
+  }
 
   ngOnInit(): void {
-    Promise.resolve().then(async () => {
-      console.log('start');
-      await new Promise((resolve) => {
-        setTimeout(resolve, 1000);
-        console.log('run');
-      });
-      console.log('end');
-    });
-    // start -> run -> end
+    this.getAllUsers()
+    this.mainService.listUser.subscribe(res => {
+      this.users = res
+    })
   }
 
   getAllUsers() {
     this.mainService.users.getAll().subscribe((data) => {
-      console.log('🚀 ~ data:', data);
+      this.mainService.listUserSubject.next(data)
     });
+  }
+
+  createUser() {
+    this.mainService.users.create().subscribe(data => {
+      console.log("🚀 ~ data:", data)
+    })
+  }
+
+  updateUser(id: number, index: number) {
+    this.mainService.users.update(id, index).subscribe(res => {
+      console.log("🚀 ~ res:", res)
+      this.users.splice(index, 1, res)
+      this.mainService.setListUsers(this.users)
+    })
+  }
+
+  deleteUser(id: number, index: number) {
+    this.mainService.users.delete(id, index).subscribe(res => {
+      this.mainService.setListUsers(this.users)
+    })
   }
 }

@@ -1,0 +1,11 @@
+<ul>
+    <li *ngFor="let item of users; index as i">
+        {{item.username}} - {{item.password}} - {{item.email}}
+        <button (click)="updateUser(item.id, i)">edit</button>
+        <button (click)="deleteUser(item.id, i)">delete</button>
+    </li>
+</ul>
+<br>
+<button (click)="createUser()">create</button>
+
+<app-child-one></app-child-one>
